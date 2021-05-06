@@ -2,12 +2,12 @@ Hololive Scheduler
 
 To be finished
 
-Description:
+Description: <br />
 Python script to create ics files for Hololive Schedules
 
-Requirements:
-Selenium WebDriver: https://www.selenium.dev/downloads/
-ICS: https://icspy.readthedocs.io/en/stable/index.html
+Requirements: <br />
+Selenium WebDriver: https://www.selenium.dev/downloads/  <br />
+ICS: https://icspy.readthedocs.io/en/stable/index.html <br />
 Python3: https://www.python.org/
 
 How to use:
