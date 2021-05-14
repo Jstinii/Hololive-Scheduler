@@ -28,6 +28,7 @@ def main():
     driver.maximize_window()
 
     time = Select(driver.find_element_by_id("timezoneSelect"))
+
     time.select_by_visible_text(timezone)
 
     date = driver.find_elements_by_class_name('holodule.navbar-text')
@@ -52,6 +53,8 @@ def add(date, stream, dateSaveDict, summaryDict):
 
     summaryList = []
 
+    info = ''
+
     index = 0
 
     for e in date:
@@ -66,7 +69,8 @@ def add(date, stream, dateSaveDict, summaryDict):
         test = e.location
         for t in test:
             if (t == 'y'):
-                streamDict[e.text] = test[t]
+                info = e.text + " " + e.get_attribute('href')
+                streamDict[info] = test[t]
 
     for e in dateDict:
         dateList.append(dateDict[e])
