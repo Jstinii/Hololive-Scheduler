@@ -1,22 +1,18 @@
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from ics import Calendar, Event
+from selenium.common.exceptions import NoSuchElementException
 import sys
 import arrow
 
 
 def main():
 
-    print('Enter Timezone Ex: America/Chicago')
-    timezone = input()
-
-    print('Enter Schedule to search for')
-    print('Ex: English, Indonesia, Holostars, Hololive, Lives')
-    type = input().lower()
+    timezone = sys.argv[1]
+    type = sys.argv[2].lower()
 
     summaryDict = {}
     dateSaveDict = {}
-
 
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
@@ -29,7 +25,11 @@ def main():
 
     time = Select(driver.find_element_by_id("timezoneSelect"))
 
-    time.select_by_visible_text(timezone)
+    try:
+        time.select_by_visible_text(timezone)
+    except NoSuchElementException:
+        print("Timezone not found | Ex: America/Chicago")
+        quit()
 
     date = driver.find_elements_by_class_name('holodule.navbar-text')
 
