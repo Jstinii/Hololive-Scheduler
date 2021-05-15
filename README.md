@@ -12,7 +12,9 @@ Python3: https://www.python.org/
 
 How to use:
 1. Add ICS and Selenium WebDriver through pip or other alternative method(s)
-2. Add location of WebDriver to hScheduler.py at commented out line
+2. Add location of WebDriver to hScheduler.py at commented out lines
 3. Run python hScheduler.py  <br />
    Argument[1] Timezone: America/Chicago <br />
-   Argument[2] Schedule: English, Indonesia, Holostars, Hololive, Lives
+   Argument[2] Schedule: English, Indonesia, Holostars, Hololive, Lives <br />
+   Argument[3] Starting Time: 14:00
+4. ICS files saved under the format: holo_[Schedule]_05-14

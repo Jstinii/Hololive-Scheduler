@@ -8,20 +8,29 @@ import arrow
 
 def main():
 
+    if len(sys.argv) != 4:
+        print("Invalid amount of arguments")
+        quit()
+
     timezone = sys.argv[1]
     type = sys.argv[2].lower()
+    timeStart = sys.argv[3]
 
     summaryDict = {}
     dateSaveDict = {}
 
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
-    # Change the below line for location of Chrome webdriver then uncomment
+    options.add_argument("--use-fake-ui-for-media-stream")
+    # Change the below lines for location of Chrome webdriver then uncomment
     # driver = webdriver.Chrome(options=options, executable_path=r"ENTER LOCATION OF WEBDRIVER HERE")
+    # driver2 = webdriver.Chrome(options=options, executable_path=r"ENTER LOCATION OF WEBDRIVER HERE")
     # https://sites.google.com/chromium.org/driver/downloads?authuser=0
     driver.get("https://schedule.hololive.tv/lives/"+type)
 
     driver.maximize_window()
+    driver2.maximize_window()
+
 
     time = Select(driver.find_element_by_id("timezoneSelect"))
 
@@ -29,31 +38,31 @@ def main():
         time.select_by_visible_text(timezone)
     except NoSuchElementException:
         print("Timezone not found | Ex: America/Chicago")
+        driver.close()
         quit()
 
     date = driver.find_elements_by_class_name('holodule.navbar-text')
 
     stream = driver.find_elements_by_class_name('thumbnail')
 
-    add(date, stream, dateSaveDict, summaryDict)
+    add(date, stream, dateSaveDict, summaryDict, driver2)
 
-    schedule(dateSaveDict,summaryDict,timezone)
+    schedule(dateSaveDict,summaryDict,timezone,sys.argv[2],timeStart)
 
     driver.close()
 
 
 
-def add(date, stream, dateSaveDict, summaryDict):
+def add(date, stream, dateSaveDict, summaryDict, driver):
 
     dateDict = {}
-
     streamDict = {}
-
     dateList = []
-
     summaryList = []
-
     info = ''
+    yt = ''
+    embed = ''
+
 
     index = 0
 
@@ -69,7 +78,10 @@ def add(date, stream, dateSaveDict, summaryDict):
         test = e.location
         for t in test:
             if (t == 'y'):
-                info = e.text + " " + e.get_attribute('href')
+                embed = e.get_attribute('href').replace('watch?v=', 'embed/')
+                driver.get(embed)
+                yt = driver.find_element_by_class_name('ytp-title')
+                info = e.text + " " + yt.text + " " + e.get_attribute('href')
                 streamDict[info] = test[t]
 
     for e in dateDict:
@@ -91,15 +103,15 @@ def add(date, stream, dateSaveDict, summaryDict):
         summaryList.clear()
         index += 1
 
-def schedule(dateSaveDict,summaryDict, timezone):
+def schedule(dateSaveDict,summaryDict, timezone,type,timeStart):
 
     i = 0
 
     while i < len(dateSaveDict):
         c = Calendar()
         e = Event()
-        e.name = "Hololive Schedule for " + str(dateSaveDict[i][0:5])
-        e.begin = arrow.get('2021' + '-' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5]) + ' 10:00:00').replace(tzinfo=timezone)
+        e.name = "Hololive " + type + " Schedule for " + str(dateSaveDict[i][0:5])
+        e.begin = arrow.get('2021' + '-' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5]) + ' ' + timeStart + ":00").replace(tzinfo=timezone)
 
         e.description = str(summaryDict[i+1])
 
@@ -107,7 +119,7 @@ def schedule(dateSaveDict,summaryDict, timezone):
 
         print(c.events)
 
-        with open('holo' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5])  +'.ics', 'w' ,encoding='utf8') as f:
+        with open('holo_' + type + "_" + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5])  +'.ics', 'w' ,encoding='utf8') as f:
             f.writelines(c)
         i += 1
 
