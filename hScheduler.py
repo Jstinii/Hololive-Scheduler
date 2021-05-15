@@ -51,6 +51,7 @@ def main():
 
     driver.close()
 
+    driver2.close()
 
 
 def add(date, stream, dateSaveDict, summaryDict, driver):
