@@ -16,7 +16,7 @@ Python3: https://www.python.org/
 3. Run python hScheduler.py  <br />
    Argument[1] Timezone: America/Chicago <br />
    Argument[2] Schedule: English, Indonesia, Holostars, Hololive, Lives <br />
-   Argument[3] Starting Time: 14:00
+   Argument[3] Starting Time: 14:00 <br />
    Argument[4] Add Nijisanji Livers: True
 4. ICS files saved under the format: vtub_[Schedule]_[date]
 
