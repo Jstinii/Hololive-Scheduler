@@ -238,7 +238,7 @@ def schedule(dateSaveDict,summaryDict, timezone,type,timeStart):
         c = Calendar()
         e = Event()
         e.name = "VTuber " + type + " Schedule for " + str(dateSaveDict[i][0:5])
-        e.begin = arrow.get('2021' + '-' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5]) + ' ' + timeStart + ":00").replace(tzinfo=timezone)
+        e.begin = arrow.get(datetime.now().year + '-' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5]) + ' ' + timeStart + ":00").replace(tzinfo=timezone)
 
         summaryDict[i+1] = "\n".join(summaryDict[i+1])
         e.description = str(summaryDict[i+1])
