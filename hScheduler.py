@@ -98,6 +98,7 @@ def add(dateE, stream, dateSaveDict, summaryDict, driver):
     streamDict = {}
     dateList = []
     summaryList = []
+    numDateList = []
     firstSep = 0
     info = ''
     yt = ''
@@ -109,6 +110,7 @@ def add(dateE, stream, dateSaveDict, summaryDict, driver):
 
     for e in dateE:
         test = e.location
+        numDateList.append(e.text[0:5])
         for t in test:
             if(t == 'y'):
                 dateDict[e.text] = test[t]
@@ -145,7 +147,7 @@ def add(dateE, stream, dateSaveDict, summaryDict, driver):
                     firstSep = 1
                 else:
                     summaryList.append('')
-                new_datetime = datetime(datetime.now().year,datetime.now().month,datetime.now().day,int(t[0:2]),int(t[3:5]))
+                new_datetime = datetime(datetime.now().year,int(numDateList[index-1][0:2]),int(numDateList[index-1][3:5]),int(t[0:2]),int(t[3:5]))
 
                 if(new_datetime < today):
                     t = t.replace(t[0:5], 'Live!')
@@ -238,7 +240,7 @@ def schedule(dateSaveDict,summaryDict, timezone,type,timeStart):
         c = Calendar()
         e = Event()
         e.name = "VTuber " + type + " Schedule for " + str(dateSaveDict[i][0:5])
-        e.begin = arrow.get(datetime.now().year + '-' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5]) + ' ' + timeStart + ":00").replace(tzinfo=timezone)
+        e.begin = arrow.get(str(datetime.now().year) + '-' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5]) + ' ' + timeStart + ":00").replace(tzinfo=timezone)
 
         summaryDict[i+1] = "\n".join(summaryDict[i+1])
         e.description = str(summaryDict[i+1])
