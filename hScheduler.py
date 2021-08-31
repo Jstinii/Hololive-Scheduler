@@ -3,6 +3,7 @@ from selenium.webdriver.support.select import Select
 from ics import Calendar, Event
 from selenium.common.exceptions import NoSuchElementException
 from datetime import date, datetime
+from twitter_get import importer
 import sys
 import arrow
 
@@ -88,9 +89,8 @@ def main():
 
     driver2.close()
 
-
-
-
+    if str(type) == 'english':
+        importer(nij)
 
 def add(dateE, stream, dateSaveDict, summaryDict, driver):
 
