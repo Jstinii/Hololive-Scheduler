@@ -3,7 +3,8 @@
 To be finished
 
 # Description <br />
-Python script to create ics files for Hololive Schedules
+Python script to create ics files for Hololive Schedules <br />
+Trello: https://trello.com/b/daMIn5qq/hololive-scheduler
 
 # Requirements <br />
 Twitter App: https://developer.twitter.com  <br />
