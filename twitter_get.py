@@ -14,7 +14,7 @@ search_url = "https://api.twitter.com/2/tweets/search/recent"
 EnDict = {'english': ['moricalliope', 'takanashikiara', 'watsonameliaEN', 'gawrgura', 'ninomaeinanis', 'irys_en',
                       'ceresfauna', 'tsukumosana', 'ourokronii', 'nanashimumei_en', 'hakosbaelz']}
 
-NijEnDict = {'english': ['PomuRainpuff', 'EliraPendora', 'FinanaRyugu', 'Rosemi_Lovelock', 'Petra_Gurin', 'Selen_Tatsuki']}
+NijEnDict = {'english': ['PomuRainpuff', 'EliraPendora', 'FinanaRyugu', 'Rosemi_Lovelock', 'Petra_Gurin', 'Selen_Tatsuki', 'ReimuEndou', 'MillieParfait', 'NinaKosaka', 'EnnaAlouette']}
 
 
 def bearer_oauth(r):
@@ -60,7 +60,7 @@ def importer(nij):
 
     if nij is True:
         for liver in NijEnDict['english']:
-            query_params = {'query': '(from:' + liver + '(schedule OR calendar OR R-🔞) has:media -is:retweet)',
+            query_params = {'query': '(from:' + liver + '(schedule OR calendar OR R-🔞 OR Live tag) has:media -is:retweet)',
                             'expansions': 'attachments.media_keys', 'media.fields': 'url'}
 
             json_response = connect_to_endpoint(search_url, query_params)
