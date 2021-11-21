@@ -15,6 +15,7 @@ Python3: https://www.python.org/
 # How to use
 1. Add ICS and Selenium WebDriver through pip or other alternative method(s)
 2. Add location of WebDriver to hScheduler.py at exec_path
+   Only tested with Chrome WebDriver
 3. Create Basic Twitter App and add bearer token from app to twitter_get.py at bearer_token
 4. Run python hScheduler.py  <br />
    Argument[1] Timezone: America/Chicago <br />

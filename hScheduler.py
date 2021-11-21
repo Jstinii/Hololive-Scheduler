@@ -17,7 +17,8 @@ def main():
     if sys.argv[4] != 'True' and sys.argv[4] != 'False':
         print("Must be True or False")
         quit()
-
+        
+    # Download Chrome WebDriver here https://sites.google.com/chromium.org/driver/downloads?authuser=0
     # Change the below line for location of Chrome webdriver
     exec_path = r"ENTER LOCATION OF WEBDRIVER HERE"
     timezone = sys.argv[1]
@@ -33,8 +34,7 @@ def main():
     options.add_argument("--use-fake-ui-for-media-stream")
     driver = webdriver.Chrome(options=options, executable_path=exec_path)
     driver2 = webdriver.Chrome(options=options, executable_path=exec_path)
-
-    # https://sites.google.com/chromium.org/driver/downloads?authuser=0
+    
     driver.get("https://schedule.hololive.tv/lives/"+type)
 
     driver.maximize_window()
