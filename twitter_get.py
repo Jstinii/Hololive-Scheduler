@@ -60,7 +60,7 @@ def importer(nij):
 
     if nij is True:
         for liver in NijEnDict['english']:
-            query_params = {'query': '(from:' + liver + '(schedule OR calendar OR R-🔞 OR Live tag) has:media -is:retweet)',
+            query_params = {'query': '(from:' + liver + '(schedule OR calendar OR R-🔞 OR live tag OR fan name) has:media -is:retweet)',
                             'expansions': 'attachments.media_keys', 'media.fields': 'url'}
 
             json_response = connect_to_endpoint(search_url, query_params)
