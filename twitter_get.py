@@ -14,8 +14,8 @@ search_url = "https://api.twitter.com/2/tweets/search/recent"
 EnDict = {'english': ['moricalliope', 'takanashikiara', 'watsonameliaEN', 'gawrgura', 'ninomaeinanis', 'irys_en',
                       'ceresfauna', 'tsukumosana', 'ourokronii', 'nanashimumei_en', 'hakosbaelz']}
 
-NijEnDict = {'english': ['PomuRainpuff', 'EliraPendora', 'FinanaRyugu', 'Rosemi_Lovelock', 'Petra_Gurin', 'Selen_Tatsuki', 'ReimuEndou', 'MillieParfait', 'NinaKosaka', 'EnnaAlouette']}
-
+NijEnDict = {'english': ['PomuRainpuff', 'EliraPendora', 'FinanaRyugu', 'Rosemi_Lovelock', 'Petra_Gurin', 'Selen_Tatsuki', 'ReimuEndou', 'MillieParfait', 'NinaKosaka', 'EnnaAlouette', 'luca_kaneshiro', 'ike_eveland', 'Vox_Akuma'
+, 'shu_yamino', 'Mysta_Rias']}
 
 def bearer_oauth(r):
     """
