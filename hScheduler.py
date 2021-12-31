@@ -182,6 +182,8 @@ def addN(stream, dateSaveDict, summaryDict):
     while dateInitialI < len(dateSaveDict): # Hololive usually has schedules up earlier
         dateInitialI += 1
     new_datetime = datetime(date.today().year,int(dateSaveDict[dateInitialI-1][0:2]),int(dateSaveDict[dateInitialI-1][3:5]))
+    if int(dateSaveDict[dateInitialI-1][0:2]) == 1 and int(dateSaveDict[dateInitialI-1][3:5]) == 1:
+       new_datetime = datetime(date.today().year+1,int(dateSaveDict[dateInitialI-1][0:2]),int(dateSaveDict[dateInitialI-1][3:5]))
     new_datetime = datetime.date(new_datetime)
 
     tdelta = new_datetime - today
@@ -241,7 +243,9 @@ def schedule(dateSaveDict,summaryDict, timezone,type,timeStart):
         e = Event()
         e.name = "VTuber " + type + " Schedule for " + str(dateSaveDict[i][0:5])
         e.begin = arrow.get(str(datetime.now().year) + '-' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5]) + ' ' + timeStart + ":00").replace(tzinfo=timezone)
-
+        if int(dateSaveDict[i][0:2]) == 1 and int(dateSaveDict[i][3:5]) == 1:
+           e.begin = arrow.get(str(datetime.now().year+1) + '-' + str(dateSaveDict[i][0:2]) + '-' + str(dateSaveDict[i][3:5]) + ' ' + timeStart + ":00").replace(tzinfo=timezone)
+        
         summaryDict[i+1] = "\n".join(summaryDict[i+1])
         e.description = str(summaryDict[i+1])
 
