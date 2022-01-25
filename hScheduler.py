@@ -30,6 +30,7 @@ def main():
     dateSaveDict = {}
 
     options = webdriver.ChromeOptions()
+    options.add_argument('--log-level=1')
     options.add_argument("--headless")
     options.add_argument("--use-fake-ui-for-media-stream")
     driver = webdriver.Chrome(options=options, executable_path=exec_path)
