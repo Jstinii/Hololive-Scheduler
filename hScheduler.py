@@ -231,10 +231,11 @@ def addN(stream, dateSaveDict, summaryDict):
             t = t.replace('】', ' ] ')
 
             currentStream.append('Live!' + ' ' + t + ' ' + e.get_attribute('href'))
-        summaryDict[len(summaryDict)-tdelta] += futureStream
-        futureStream.clear()
-        summaryDict[len(summaryDict)-tdelta] += currentStream
-        currentStream.clear()
+        if(tdelta >= 0): # Hololive has not put up streams for current day
+            summaryDict[len(summaryDict)-tdelta] += futureStream
+            futureStream.clear()
+            summaryDict[len(summaryDict)-tdelta] += currentStream
+            currentStream.clear()
 def schedule(dateSaveDict,summaryDict, timezone,type,timeStart):
 
     i = 0
